@@ -5,7 +5,7 @@ Summary (KeyNotes)
 
 1. What is java serialization/deserialization ? Just the concept, no details, in your own words
 - a way to represent object as a piece of bytes
-&nbsp;
+&nbsp;&nbsp;
 2. How to spot java serialized object: 
 - `.ser` extention
 - starting bytes `aced 0005`
