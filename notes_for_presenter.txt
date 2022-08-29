@@ -1,0 +1,102 @@
+1. meme on screen
+2. title reference (WhySoSerial ?)
+3. basics of serialization:
+
+Let's imagine for a second that we are Junior Java Developers. We came to work on Monday and we are
+assigned to create simple terminal application without GUI, which needs to have 2 features:
+* create user
+* login
+
+Do not forget that we are Junior java developers so we have very basic knowledge about security,
+but our lead told us something about 'hashing' and 'md5' algorithm so we googled it and copied some
+of the code from stackoverflow.
+
+Also one digression here -> Do you guys know about a class called GuardedString ?
+it is java implementation of dotnet's SecureString.
+
+Basically it works very similar to a String, with one difference,
+which is that in the memory of the program String is stored in cleartext but characters of GuardedString
+are encrypted and the key is randomly generated.
+
+*show code and usability of app_1*
+
+We present it to our lead and he is happy with result, so we can scroll through the memes
+for the rest of the day.
+
+Now we come to the office on the next day, we eat some free fresh fruit, we drink our morning coffee
+and our lead says that customers's requirements have been changed and our code lacks persistance,
+if we close the program all created users are gone and we would like to avoid that.
+
+Now we can for example write/read usernames and password to and from the text file which we load whenever we start the program or we can use Serialization/Deserialization mechanism offered by Java.
+
+Now what is serialization in simple words, it is putting an object with all of the field values like username and password and put into bytes and with those bytes, we can recreate the object again whenever it is required. Those bytes can be saved into the files or send over network.
+
+What changes in our code it requires ?
+1. first of all our serialized object and every object within if it's for example arrayList must implement the serializable interface
+2. we need to create addtional 2 methods: one which will update the file whenever we add new user
+and second one to read the serialized file whenever the program starts.
+
+*show code and usability of app_2*
+
+Now we present the code to our boss and he is happy.
+
+After a while the app goes through penetration test and the attacker found a critical vulnerability
+which leads to RCE. (pikachu face)
+
+From the report we read that the pentester he was able to modify users.ser file and after starting program normally it executes
+calculator.
+
+Additional note here. 
+
+We as junior develepoers were responsible for only 2 small functionalities, which went further into some
+bigger project and inside that bigger project someone else created EvilGadget class.
+
+Of course nobody in the real world would create such class. However it is very possible that the bigger project will have 
+some kind of Common( get it ? CommoncCollection ?) dependency.
+
+The RCE is possible only because the EvilGadget class is available on the classpath of the Java program.
+
+Also  EvilGadget does not have to be used by the Java program.
+
+what is gadget?
+A gadget is a piece of code present in the executing application and can be used for malicious purposes. EvilGadget on its own might not be dangerous. In fact, some real-world gadget classes are part of the JDK itself! However, when such classes are included in a Java program that deserializes user-controlled inputs of arbitrary type, it can lead to a disaster.
+
+What is a gadget chain?
+You might think that EvilGadget is unrealistic — who would ever create a class that runs random commands when deserialized? How do we exploit deserialization vulnerabilities in the real world if that is the case? Gadget chains to the rescue! Instead of using one evil class, you chain multiple classes to fulfill your nefarious purposes.
+
+real world gadget chains?
+In practice, gadget chains are hard to construct but not impossible. Most gadgets come from open source, so the attacker has complete visibility and lots of time to research such chains. Also, Java has this really cool feature called “reflection”, which allows you to dynamically call any classes. This makes things easier. Instead of looking for Runtime.exec or similar, you can look for gadgets that use user input in reflection APIs and call Runtime.exec through reflection.
+
+A critical condition for insecure deserialization is that the hacker can force the server to deserialize objects of any type
+
+Let's quickly talk about mitigation and what should we recommend:
+1. Avoid java custom serialization
+Ugh, ok, that’s helpful, thanks. Next!
+2. Know your serialization framework
+Some frameworks don’t allow deserializing objects of arbitrary type. These frameworks will check the type of the input object and refuse to run any code if the type is unexpected. For example, Jackson won’t allow you to deserialize objects of random types unless you explicitly turn that behavior on by either invoking the enableDefaultTyping method, or annotating properties with @@JsonTypeInfo and using class name as the type id.
+
+This is the end, any questions ?
+If no then like and subscribe ane we'll see in the next video :)
+
+1. Java serialization/deserialization basics - what is it ? How to use it ?
+Lab1 (file.ser with serialized object with username/password/flag inside)
+2. Gadget Chains - very quick explanaition
+3. Insecure Java deserialization identyfing and exploitation with common gadgets (autnomated tools)
+Lab2 (docker with simple web app vulnerable to insecure deserialization / bruteforcegadgets to rce)
+4. Finding uncommon gadgetChains (gadgetInspector)
+Lab3 (docker with simple web app vulnerable to insecure deserialization / rce)
+
+references:
+- repo with all of the codes and challenges
+
+gadgeInspector:
+https://github.com/JackOfMostTrades/gadgetinspector
+
+ysoserial:
+https://github.com/frohoff/ysoserial
+
+jdeserialize:
+https://github.com/unsynchronized/jdeserialize
+
+great tutorial:
+https://learn.snyk.io/lessons/insecure-deserialization/java/
