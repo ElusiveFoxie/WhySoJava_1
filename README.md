@@ -5,34 +5,40 @@ Summary (KeyNotes)
 
 1. What is java serialization/deserialization ? Just the concept, no details, in your own words
 - a way to represent object as a piece of bytes
-&nbsp;&nbsp;
+<br />
+
 2. How to spot java serialized object: 
 - `.ser` extention
 - starting bytes `aced 0005`
 - base64 encoded starting bytes `RO0AB`
-
+<br />
 
 3. Potential impact of insecure deserialization ?
 - RCE, if gadget/gadget chain was found/bruteforced
-- logic errors via modyfing serialized objects, if there is no server side validation\
+- logic errors via modyfing serialized objects, if there is no server side validation
+<br />
 
 4. How to mitigate insecure deserialization ?
 - if its not necessary: avoid it
 - know your frameworks and configure them accordingly to the recommendations
-- it its necessary whitelist what objects can be deserialized\
+- it its necessary whitelist what objects can be deserialized
+<br />
 
 5. What is a gadget ? just the concept, no details, in your own words
-- piece of code which can be used to achieve rce via java deserialization\
+- piece of code which can be used to achieve rce via java deserialization
+<br />
 
 6. How to scan for uncommon gadgetchain using gadgetinspector ?
 `java -Xmx2G -jar build/libs/gadget-inspector-all.jar commons-collections-3.2.1.jar`
 results inside: gadget-chains.txt\
+<br />
 
 7. How to generate payload using ysoserial ? 
 normal (bytes):
 `java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" > payload`
 base64 encoded:
-`java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" | base64 > payload.txt`\
+`java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" | base64 > payload.txt`
+<br />
 
 8. How to autonomate payload generation ?
 - my scripts: https://github.com/ElusiveFoxie/Python-Bash_Deserialisation/
