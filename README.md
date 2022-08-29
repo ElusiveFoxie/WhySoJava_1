@@ -4,12 +4,14 @@
 Summary (KeyNotes)
 
 1. What is java serialization/deserialization ? Just the concept, no details, in your own words
-- a way to represent object as a piece of bytes\
+- a way to represent object as a piece of bytes
+
 
 2. How to spot java serialized object: 
 - `.ser` extention
 - starting bytes `aced 0005`
-- base64 encoded starting bytes `RO0AB`\
+- base64 encoded starting bytes `RO0AB`
+
 
 3. Potential impact of insecure deserialization ?
 - RCE, if gadget/gadget chain was found/bruteforced
