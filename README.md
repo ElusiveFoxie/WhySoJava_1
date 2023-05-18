@@ -10,7 +10,7 @@ Summary (KeyNotes)
 2. How to spot java serialized object: 
 - `.ser` extention
 - starting bytes `aced 0005`
-- base64 encoded starting bytes `RO0AB`
+- base64 encoded starting bytes `rO0AB`
 <br />
 
 3. Potential impact of insecure deserialization ?
